@@ -1,113 +1,221 @@
-# Snake Game in C++
+Snake Game in C++
 
-This is a simple implementation of the classic Snake game in C++ using the console. It utilizes basic libraries such as `<iostream>`, `<conio.h>`, and `<windows.h>` to create an interactive and fun game where the player controls a snake that moves around the screen, eats food to grow longer, and avoids colliding with the walls or itself.
+This project is a simple implementation of the classic Snake game in C++ using the console. It uses basic libraries such as <iostream>, <conio.h>, and <windows.h> to create an interactive game where the player controls a snake to eat food, grow in length, and avoid colliding with walls or itself.
 
-## Features
-- **Snake Movement**: Use the `W`, `A`, `S`, `D` keys to control the snake's movement (Up, Left, Down, Right).
-- **Game Over**: The game ends when the snake collides with the walls or its own body.
-- **Food**: The snake must eat food (`F` character) to grow in length and increase the score.
-- **Restart Option**: After the game is over, the player can restart by pressing the `R` key, or exit the game by pressing any other key.
-- **Score**: The score is displayed at the bottom of the screen, and increases every time the snake eats food.
+Features
 
-## Requirements
-- A C++ compiler (e.g., GCC, MSVC) supporting C++11 or later.
-- **Windows** operating system (because of `conio.h` and `windows.h` usage).
+Snake Movement: Use the W, A, S, D keys to control the snake's movement (Up, Left, Down, Right).
 
-## Installation
+Game Over: The game ends when the snake collides with the walls or its own body.
+
+Food: The snake eats food (represented by the 'F' character) to grow longer and increase the score.
+
+Restart Option: After the game ends, the player can restart by pressing the R key or exit by pressing any other key.
+
+Score Display: The current score is displayed at the bottom of the screen and increases every time the snake eats food.
+
+Requirements
+
+A C++ compiler (e.g., GCC, MSVC) that supports C++11 or later.
+
+Windows operating system (due to the usage of <conio.h> and <windows.h>).
+
+Installation
+
 To run this game on your local machine, follow these steps:
 
-1. **Clone the repository**:
-   git clone https://github.com/your-username/snake-game-cpp.git
-   cd snake-game-cpp
-   
+Clone the repository:
 
-2. **Compile the Code**:
-   Using a C++ compiler (like `g++` or MSVC), compile the `main.cpp` file:
-    - On Windows, you can use MSVC or any IDE that supports C++ (like Visual Studio) to compile the code.
+git clone https://github.com/your-username/snake-game-cpp.git
+cd snake-game-cpp
 
-3. **Run the Game**:
-   After compiling, run the executable to start playing the game.
+Compile the code:
+Use a C++ compiler (e.g., g++, MSVC, or any IDE like Visual Studio) to compile the code:
 
-## How to Play
+g++ -o SnakeGame main.cpp
 
-- **Movement**: 
-  - Use `W` to move up.
-  - Use `A` to move left.
-  - Use `S` to move down.
-  - Use `D` to move right.
-  
-- **Game Over**: The game ends if the snake collides with the walls or its own body.
-  
-- **Restart**: After the game ends, you will see a prompt. Press `R` to restart the game or any other key to exit.
+Run the game:
 
-## Code Explanation
+./SnakeGame
 
-### Class: `SnakeGame`
-- **Attributes**:
-  - `snake`: A vector of pairs that stores the coordinates of the snake's body.
-  - `foodX`, `foodY`: The coordinates where food appears on the screen.
-  - `score`: Tracks the player's score.
-  - `direction`: Stores the current direction of the snake (`'l'`, `'r'`, `'u'`, `'d'` for left, right, up, and down).
-  - `gameOver`: Boolean flag that indicates whether the game is over.
+How to Play
 
-- **Methods**:
-  - `resetGame()`: Resets the game state, placing the snake in the middle of the screen and resetting the score.
-  - `placeFood()`: Randomly places the food on the screen.
-  - `draw()`: Draws the current game state (snake, food, and score) on the screen.
-  - `input()`: Handles user input (W, A, S, D for movement and X to quit).
-  - `update()`: Updates the game state by moving the snake, checking for collisions, and updating the score when food is eaten.
-  - `isGameOver()`: Returns whether the game is over.
-  - `getScore()`: Returns the current score.
+Movement:
 
-### Main Loop:
-1. **Draw** the game board.
-2. **Input** the user's movement.
-3. **Update** the game state by moving the snake.
-4. If the game is over, display the final score and prompt the user to restart or quit.
+Use W to move up.
 
-## Data Structure Analysis
+Use A to move left.
 
-### 1. **Vector of Pairs for Snake**
-   - **Data Structure**: `vector<pair<int, int>>`
-   - **Explanation**: 
-     The snake's body is represented as a vector of pairs. Each `pair<int, int>` holds the coordinates of a segment of the snake. The first element of the pair represents the `x` coordinate, and the second element represents the `y` coordinate of a segment.
-     The snake's body grows as new segments are added to the front of the vector whenever the snake eats food, and the last segment is removed when it doesn't.
+Use S to move down.
 
-   - **Usage**: 
-     - The snake's body is stored dynamically, and its size changes as the snake eats food.
-     - The `vector` allows easy insertion at the front (`insert()`) and removal from the back (`pop_back()`).
+Use D to move right.
 
-### 2. **Integer Variables for Food and Score**
-   - **Data Structure**: `int foodX, foodY, score`
-   - **Explanation**:
-     - `foodX` and `foodY` store the coordinates of the food on the screen.
-     - `score` keeps track of the player's score, which increases each time the snake eats food.
+Game Over: The game ends if the snake collides with the walls or its own body.
 
-   - **Usage**: 
-     - Simple integers are sufficient for these variables because we only need to store a fixed set of data (coordinates and score).
+Restart: After the game ends, press R to restart or any other key to exit.
 
-### 3. **Char for Direction**
-   - **Data Structure**: `char direction`
-   - **Explanation**:
-     - The `direction` variable stores the current direction of the snake using a single character: `'l'` for left, `'r'` for right, `'u'` for up, and `'d'` for down.
-   
-   - **Usage**: 
-     - This variable helps in determining how the snake's position should be updated in each game loop, and ensures that the snake cannot reverse direction directly.
+Code Explanation
 
-### 4. **Boolean for Game State**
-   - **Data Structure**: `bool gameOver`
-   - **Explanation**: 
-     - The `gameOver` boolean flag is used to determine whether the game is over. It is set to `true` if the snake collides with the wall or itself, and the game loop ends when it is `true`.
+Class: SnakeGame
 
-   - **Usage**:
-     - This is a simple boolean that prevents further movement updates and input processing once the game ends.
+This class handles the entire game logic.
 
-### 5. **Food Placement (Random Coordinates)**
-   - **Data Structure**: The `placeFood()` method generates random coordinates for the food by using `rand() % WIDTH` and `rand() % HEIGHT` to place the food in random locations on the screen.
+Attributes:
 
-   - **Usage**:
-     - Random placement ensures that the food appears in different locations each time it is eaten.
+snake:
 
+Data type: vector<pair<int, int>>
 
-Enjoy playing!
+Description: Stores the coordinates of the snake's body segments.
 
+foodX and foodY:
+
+Data type: int
+
+Description: Stores the coordinates of the food.
+
+score:
+
+Data type: int
+
+Description: Tracks the player's current score.
+
+direction:
+
+Data type: char
+
+Description: Indicates the current direction of the snake ('l' for left, 'r' for right, 'u' for up, 'd' for down).
+
+gameOver:
+
+Data type: bool
+
+Description: Flag that determines if the game is over.
+
+Methods:
+
+resetGame():
+
+Resets the game state by:
+
+Placing the snake in the middle of the screen.
+
+Setting the score to 0.
+
+Resetting the gameOver flag to false.
+
+Setting the initial direction to 'r' (right).
+
+Calling placeFood() to place the food on the screen.
+
+placeFood():
+
+Randomly places the food on the screen within the game boundaries.
+
+Ensures that the food does not spawn on the snake's body.
+
+draw():
+
+Clears the screen and redraws the game board, including:
+
+Walls: Displayed as #.
+
+Snake: Displayed as O.
+
+Food: Displayed as F.
+
+Displays the current score below the game board.
+
+input():
+
+Uses _kbhit() and _getch() to detect user input.
+
+Changes the direction of the snake based on the input:
+
+w for up.
+
+a for left.
+
+s for down.
+
+d for right.
+
+Prevents the snake from reversing direction directly.
+
+Sets gameOver to true if x is pressed.
+
+update():
+
+Moves the snake in the current direction.
+
+Checks for collisions:
+
+Wall collision: Ends the game if the snake moves beyond the screen boundaries.
+
+Self-collision: Ends the game if the snake collides with its own body.
+
+If the snake eats the food:
+
+Increases the score.
+
+Places new food on the screen.
+
+If no food is eaten, removes the tail to simulate movement.
+
+isGameOver():
+
+Returns the current state of the gameOver flag.
+
+getScore():
+
+Returns the current score.
+
+Main Loop:
+
+The main function contains the game loop:
+
+Draws the game board using draw().
+
+Processes user input using input().
+
+Updates the game state using update().
+
+If the game is over, displays the final score and prompts the user to restart or exit.
+
+Data Structures Overview:
+
+Vector of Pairs for Snake:
+
+Stores the coordinates of each segment of the snake.
+
+Allows easy insertion at the front and removal from the back to simulate movement.
+
+Integer Variables for Food and Score:
+
+foodX and foodY store the coordinates of the food.
+
+score tracks the player's current score.
+
+Char for Direction:
+
+Stores the current direction of the snake using single-character codes ('l', 'r', 'u', 'd').
+
+Boolean for Game State:
+
+gameOver is a flag used to determine if the game should continue or end.
+
+Possible Improvements:
+
+Food Placement Validation: Ensure food does not spawn on the snake's body.
+
+Difficulty Levels: Gradually increase the game speed as the score increases.
+
+Borderless Mode: Allow the snake to wrap around the screen instead of colliding with walls.
+
+Pause Functionality: Add the option to pause and resume the game.
+
+High Score Tracking: Display the highest score achieved.
+
+Sound Effects: Add sound effects for events like eating food or game over.
+
+Enjoy playing the Snake Game!
