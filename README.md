@@ -15,17 +15,13 @@ This is a simple implementation of the classic Snake game in C++ using the conso
 
 ## Installation
 To run this game on your local machine, follow these steps:
-
-1. **Clone the repository**:
-   git clone https://github.com/your-username/snake-game-cpp.git
-   cd snake-game-cpp
    
 
-2. **Compile the Code**:
+1. **Compile the Code**:
    Using a C++ compiler (like `g++` or MSVC), compile the `main.cpp` file:
     - On Windows, you can use MSVC or any IDE that supports C++ (like Visual Studio) to compile the code.
 
-3. **Run the Game**:
+2. **Run the Game**:
    After compiling, run the executable to start playing the game.
 
 ## How to Play
